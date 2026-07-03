@@ -12,6 +12,7 @@ import Leaderboard from './pages/Leaderboard';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
 import MiniGames from './pages/MiniGames';
+import SupabaseIntegration from './pages/SupabaseIntegration';
 
 // Battle Arena page container routing lobby vs active room
 function BattleArenaPage() {
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/supabase" element={<SupabaseIntegration />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>
