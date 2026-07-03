@@ -23,11 +23,14 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAuthStore } from '../store/useAuthStore';
 
 export default function SupabaseIntegration() {
+  const { profile } = useAuthStore();
+
   // Credentials state
-  const [supabaseUrl, setSupabaseUrl] = useState<string>(() => localStorage.getItem('supabase_url') || '');
-  const [supabaseKey, setSupabaseKey] = useState<string>(() => localStorage.getItem('supabase_key') || '');
+  const [supabaseUrl, setSupabaseUrl] = useState<string>(() => localStorage.getItem('supabase_url') || ((import.meta as any).env?.VITE_SUPABASE_URL || ''));
+  const [supabaseKey, setSupabaseKey] = useState<string>(() => localStorage.getItem('supabase_key') || ((import.meta as any).env?.VITE_SUPABASE_ANON_KEY || ''));
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [connectedProject, setConnectedProject] = useState<string>('');
@@ -59,6 +62,14 @@ export default function SupabaseIntegration() {
   // Profile update simulator
   const [updateUsername, setUpdateUsername] = useState('');
   const [updateBalance, setUpdateBalance] = useState('100.00');
+
+  if (profile?.username !== 'admin') {
+    return (
+      <div className="flex flex-col items-center justify-center p-12 text-orange-500 font-sans text-xs font-bold uppercase tracking-wider bg-white/5 border border-white/10 rounded-2xl">
+        ✕ ACCESS DENIED: Administrative credentials required to view Supabase Integration configurations.
+      </div>
+    );
+  }
 
   const addLog = (msg: string) => {
     const timestamp = new Date().toLocaleTimeString();

@@ -13,7 +13,6 @@ export default function Sidebar() {
     { to: "/games", icon: Gamepad2, label: "Arcade Games" },
     { to: "/wallet", icon: CreditCard, label: "Wallet & ledger" },
     { to: "/leaderboard", icon: Award, label: "Leaderboards" },
-    { to: "/supabase", icon: Database, label: "Supabase Integrator" },
     { to: "/profile", icon: User, label: "Profile" },
   ];
 
@@ -60,21 +59,36 @@ export default function Sidebar() {
       </div>
 
       {/* Footer / Copyright / Version info */}
-      <div className="space-y-4 pt-4 border-t border-white/5">
+      <div className="space-y-3 pt-4 border-t border-white/5">
         {profile?.username === 'admin' && (
-          <NavLink
-            to="/admin"
-            className={({ isActive }) => `
-              flex items-center space-x-3 rounded-xl px-3 py-2 text-xs font-mono font-bold transition-all
-              ${isActive 
-                ? 'bg-red-500/10 text-red-400 border border-red-500/20' 
-                : 'text-white/40 hover:text-red-400 border border-transparent'
-              }
-            `}
-          >
-            <Shield className="h-4 w-4 shrink-0" />
-            <span>ADMINISTRATIVE</span>
-          </NavLink>
+          <div className="space-y-1">
+            <NavLink
+              to="/admin"
+              className={({ isActive }) => `
+                flex items-center space-x-3 rounded-xl px-3 py-2 text-xs font-mono font-bold transition-all
+                ${isActive 
+                  ? 'bg-red-500/10 text-red-400 border border-red-500/20' 
+                  : 'text-white/40 hover:text-red-400 border border-transparent'
+                }
+              `}
+            >
+              <Shield className="h-4 w-4 shrink-0" />
+              <span>ADMINISTRATIVE</span>
+            </NavLink>
+            <NavLink
+              to="/supabase"
+              className={({ isActive }) => `
+                flex items-center space-x-3 rounded-xl px-3 py-2 text-xs font-mono font-bold transition-all
+                ${isActive 
+                  ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                  : 'text-white/40 hover:text-emerald-400 border border-transparent'
+                }
+              `}
+            >
+              <Database className="h-4 w-4 shrink-0" />
+              <span>SUPABASE CONTROL</span>
+            </NavLink>
+          </div>
         )}
 
         <div className="px-3">
