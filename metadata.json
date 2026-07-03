@@ -1,0 +1,8 @@
+{
+  "name": "Remix: SurgeBox Ultra",
+  "description": "Premium virtual unboxing hub featuring physical shipping, live chat, multi-player unboxing battles, item upgraders, and custom interactive mini-games.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

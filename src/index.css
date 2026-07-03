@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  background-color: #050507;
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030305;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e1e26;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333344;
+}
+
+/* Reel Ticking Center Line Cursor Selector - Changed to Orange-500 Glow */
+.reel-selector {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #f97316;
+  box-shadow: 0 0 14px #f97316, 0 0 5px #f97316;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+/* Base Reel Item Card Frame */
+.reel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px;
+  margin: 0 5px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Animation Utilities */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.animate-scale-up {
+  animation: scaleUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spinSlow 8s linear infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(249, 115, 22, 0.2), inset 0 0 4px rgba(249, 115, 22, 0.1); border-color: rgba(249, 115, 22, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.5), inset 0 0 8px rgba(249, 115, 22, 0.25); border-color: rgba(249, 115, 22, 0.6); }
+}
+.animate-glow-pulse {
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+@keyframes purpleGlowPulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(138, 61, 255, 0.2), inset 0 0 4px rgba(138, 61, 255, 0.1); border-color: rgba(138, 61, 255, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(138, 61, 255, 0.5), inset 0 0 8px rgba(138, 61, 255, 0.25); border-color: rgba(138, 61, 255, 0.6); }
+}
+.animate-glow-pulse-purple {
+  animation: purpleGlowPulse 3s infinite ease-in-out;
+}
+
