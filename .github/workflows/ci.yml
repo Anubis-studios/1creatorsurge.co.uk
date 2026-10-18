@@ -1,0 +1,36 @@
+name: Claymation Ad Generator CI App
+
+on:
+  push:
+    branches: [ main, master, "feat/*" ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Run Linter / Type Check
+        run: npm run lint
+
+      - name: Run Agent & Workflow Tests
+        run: npx tsx src/tests/workflow.test.ts
+
+      - name: Run CI App CLI Execution
+        run: npx tsx src/cli.ts --topic "CI Automated Claymation Ad"
+
+      - name: Build Application
+        run: npm run build

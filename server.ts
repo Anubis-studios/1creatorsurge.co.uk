@@ -6,6 +6,7 @@ import { createServer as createViteServer } from "vite";
 import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
 import { Box, BoxItem, InventoryItem, Profile, Transaction, LiveFeedItem, Battle, BattleParticipant, ChatMessage, BingoState, LotteryState } from "./src/types.js";
+import { runClaymationAdWorkflow } from "./src/main/ClaymationInfographicAdGenerator.js";
 
 const __filenameVal = typeof import.meta !== "undefined" && import.meta.url
   ? fileURLToPath(import.meta.url)
@@ -593,6 +594,21 @@ async function startServer() {
   }
 
   // --- API ROUTE HANDLERS ---
+
+  // Claymation Infographic Ad Generator Agent endpoint
+  app.post("/api/agents/claymation", async (req, res) => {
+    const { topic } = req.body;
+    if (!topic) {
+      return res.status(400).json({ error: "Topic is required" });
+    }
+    try {
+      const result = await runClaymationAdWorkflow({ topic });
+      res.json({ success: true, result });
+    } catch (err: any) {
+      console.error("Claymation Ad Generator error:", err);
+      res.status(500).json({ error: err.message || "Failed to run Claymation Ad Workflow" });
+    }
+  });
 
   // Auth/Profiles
   app.post("/api/auth/login", (req, res) => {
